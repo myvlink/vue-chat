@@ -2,7 +2,7 @@
   <div class="message" :class="{ 'message--current': isCurrentUser }">
     <p class="message__author" v-if="isCurrentUser">Вы</p>
     <p class="message__author" v-else>{{ message.username }}</p>
-    <textarea rows="4" class="message__text-input" type="text" v-model="message.text" v-if="isEdit" required @change="editMessage">
+    <textarea rows="4" class="message__text-input" type="text" v-model="message.text" v-if="isEdit" required>
     </textarea>
     <p class="message__text" v-else>{{ message.text }}</p>
     <p class="message__date">{{ moment(message.date).format('DD.MM.YY hh:mm:ss') }}</p>
@@ -60,13 +60,17 @@ export default {
   .message {
     margin-bottom: 20px;
     max-width: 300px;
-    overflow-wrap: break-word;
     background-color: white;
     padding: 10px;
     border-radius: 3px;
 
     &--current {
       margin-left: auto;
+    }
+
+    &__text {
+      overflow-wrap: break-word;
+      white-space: break-spaces;
     }
 
     &__text-input {
